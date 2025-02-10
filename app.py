@@ -1,4 +1,4 @@
-#second try to get the answer
+
 import pickle
 from flask import Flask, render_template, request
 import numpy as np
