@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ </head>
+<body style="background-color:black">
+    <nav class="navbar" style="background-color: #00a65a">
+      <a class="navbar-brand text-white" href="#">My Book Recommender</a>
+      <ul class="nav navbar-nav">
+        <li><a class="text-white" href="/">Home</a></li>
+        <li><a class="text-white" href="/recommend">Recommend</a></li>
+        <li><a class="text-white" href="/search_books">Search</a></li>
+      </ul>
+    </nav>
+    <div class="container mt-5">
+        <h2 style="color: white;">Search Books</h2>
+        <form action="/search_books" method="POST">
+            <div class="form-group">
+                <label for="query" style="color:white;">Search for a Book:</label>
+                <input type="text" id="query" name="query" class="form-control" placeholder="Enter book title or author">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr>
+        {% if matches is not none %}
+            {% if matches %}
+                <h2 style="color: white;">Matched Book:</h2>
+                <ul class="list-group">
+                    {% for match in matches %}
+                        <li class="list-group-item">
+                            <h4 href="/book/{{ match }}" style="color: green;" >{{ match }}</h4>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p style="color: red;">No matches found for your query. Please try again!</p>
+            {% endif %}
+        {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
